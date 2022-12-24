@@ -165,9 +165,9 @@ export const apiPutCommentText = async (
 
 export const apiGetHomeData = async (dispatch) => {
   try {
+    dispatch(setStatus(LOGGED_IN));
     const isLoggedIn = await fetchCheckLoginStatus();
     if (isLoggedIn) {
-      dispatch(setStatus(LOGGED_IN));
       const profile = await fetchGetProfile();
       dispatch(setProfile(profile));
       const posts = await fetchArticles();
