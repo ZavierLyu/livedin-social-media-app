@@ -1,6 +1,8 @@
-# LivedIn
+# LivedIn Social Media Web
 
-A social media web application based on MERN (MongoDB, Express, React, Node) stack. 
+![logo](https://res.cloudinary.com/hywr5tm6a/image/upload/c_scale,w_200/v1671866225/livedin-no-background_n63bxc.png)
+
+A social media web application with Google OAuth2 based on MERN (MongoDB, Express, React, Node) and Heroku.
 
 ## Demo Link
 
@@ -33,7 +35,7 @@ Check the front end view on: `http://localhost:3000`
 
 ### Deploy with Heroku, Cloudinary, MongoDB Atlas, Google OAuth and Surge
 
-Find the `config.json` in both frontend and backend, fill in with relevant url or client key. 
+Find the `config.json` in both frontend and backend, fill in with relevant url or client key.
 
 Deploy backend on Heroku:
 
