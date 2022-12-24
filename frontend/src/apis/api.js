@@ -11,7 +11,7 @@ import {
   signOut,
   updateHeadline,
 } from "../actions";
-import { LOGGED_IN, NOT_FOUND } from "../reducers";
+import { LOGGED_IN, NOT_FOUND, NOT_LOG_IN } from "../reducers";
 import "isomorphic-fetch";
 const queryString = require("query-string");
 const config = require("../config.json");
@@ -164,11 +164,20 @@ export const apiPutCommentText = async (
 };
 
 export const apiGetHomeData = async (dispatch) => {
-  dispatch(setStatus(LOGGED_IN));
-  const profile = await fetchGetProfile();
-  dispatch(setProfile(profile));
-  const posts = await fetchArticles();
-  dispatch(setPosts(posts));
+  try {
+    const isLoggedIn = await fetchCheckLoginStatus();
+    if (isLoggedIn) {
+      dispatch(setStatus(LOGGED_IN));
+      const profile = await fetchGetProfile();
+      dispatch(setProfile(profile));
+      const posts = await fetchArticles();
+      dispatch(setPosts(posts));
+    } else {
+      dispatch(setStatus(NOT_LOG_IN));
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const apiLinkAccount = async (
@@ -185,17 +194,25 @@ export const apiLinkAccount = async (
 
 export const apiUnlinkAccount = async ({ userId }, dispatch) => {
   const res = await fetchUnlinkAccount({ userId });
-  console.log(res);
   if (res.result === "success") {
     const profile = await fetchGetProfile();
     dispatch(setProfile(profile));
-    console.log(profile);
     return true;
   }
   return false;
 };
 
 // pure fetch
+const fetchCheckLoginStatus = async () => {
+  try {
+    return await fetch(url("/login/status"), {
+      method: "GET",
+      credentials: "include",
+    }).then((res) => res.status === 200);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const fetchUnlinkAccount = async (payload) => {
   try {

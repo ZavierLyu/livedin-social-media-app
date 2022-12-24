@@ -309,6 +309,7 @@ module.exports = (app) => {
   app.post("/login", login);
   app.post("/register", register);
   app.use(isLoggedIn);
+  app.get("/login/status", (req, res) => res.send(""));
   app.post("/account/link", linkAccount);
   app.post("/account/unlink", unlinkAccount);
   app.put("/logout", logout);

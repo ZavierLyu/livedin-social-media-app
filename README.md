@@ -38,18 +38,21 @@ Find the `config.json` in both frontend and backend, fill in with relevant url o
 Deploy backend on Heroku:
 
 ```shell
+cd backend
 heroku create [app name]
 echo web: node index.js > Procfile
 git add .
 git commit -m “initial heroku commit”
 heroku buildpacks:set heroku/nodejs -a [app name]
-git push heroku master
+# push a part of codes to heroku
+git subtree push --prefix backend heroku main
 heroku ps:scale web=1
 ```
 
 Deploy front end on Surge
 
 ```shell
+cd frontend
 npm run build
 cd build
 surge --domain [surge domain url]
