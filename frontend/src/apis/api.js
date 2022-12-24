@@ -14,8 +14,8 @@ import {
 import { LOGGED_IN, NOT_FOUND } from "../reducers";
 import "isomorphic-fetch";
 const queryString = require("query-string");
-import { backendUrl } from "../config.json";
-export const url = (path) => `${backendUrl}${path}`;
+const config = require("../config.json");
+export const url = (path) => `${config.backendUrl}${path}`;
 
 // dispatch
 export const apiSignIn = async (username, password, dispatch) => {

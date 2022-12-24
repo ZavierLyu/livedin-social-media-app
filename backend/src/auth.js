@@ -48,8 +48,6 @@ async function register(req, res) {
   const userName = req.body.userName;
   const password = req.body.password;
   const email = req.body.email;
-  // const dob = req.body.dob;
-  // const zipcode = req.body.zipcode;
   const avatar = req.body.avatar;
   if (!userName || !password) {
     return res.sendStatus(400);
@@ -247,6 +245,10 @@ const linkAccount = async (req, res) => {
       }
     );
     await Article.updateMany({ userId: user.userId }, { userId: googleId });
+    await Article.updateMany(
+      { "comments.userId": user.userId },
+      { $set: { "comments.$.userId": googleId } }
+    );
     const profile = await Profile.findOneAndDelete({ userId: user.userId });
     const googleProfile = await Profile.findOneAndUpdate(
       { userId: googleId },

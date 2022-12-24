@@ -12,8 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Navigate, Link } from "react-router-dom";
 import { LINK_ACCOUNT, LOGGED_IN, NOT_FOUND } from "../../reducers";
-import { apiLinkAccount, apiSignIn } from "../../apis/api";
-import { url } from "../../apis/api";
+import { apiLinkAccount, apiSignIn, url } from "../../apis/api";
 import Google from "@mui/icons-material/Google";
 
 const theme = createTheme();

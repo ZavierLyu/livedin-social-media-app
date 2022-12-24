@@ -205,9 +205,7 @@ async function getArticlesByUserIds(req, res) {
         timestamp: comment.created.getTime(),
         photoURL: uid2user[comment.userId].avatar,
       })),
-      // .sort((a, b) => b.timestamp - a.timestamp),
     })),
-    // .sort((a, b) => b.timestamp - a.timestamp),
   });
 }
 

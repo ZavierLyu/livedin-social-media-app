@@ -36,7 +36,7 @@ const Home = (props) => {
   return (
     <>
       <Header />
-      {/* {props.user.status !== LOGGED_IN ? <Navigate to="/" /> : <></>} */}
+      {props.user.status !== LOGGED_IN ? <Navigate to="/" /> : <></>}
       <Container>
         <Layout>
           <LeftSide />

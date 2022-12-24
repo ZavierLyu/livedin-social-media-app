@@ -1,5 +1,3 @@
-const _ = require("lodash");
-const Article = require("./models/article.model");
 const Profile = require("./models/profile.model");
 
 // utils
